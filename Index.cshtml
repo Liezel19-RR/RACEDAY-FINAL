@@ -1,0 +1,14 @@
+@model List<EventVm>
+<h1>Find an event</h1>
+<form method="get" class="filters">
+    <input name="Search" value="@ViewBag.Filter.Search" placeholder="Search events" />
+    <select name="Type"><option value="">All types</option><option selected="@(ViewBag.Filter.Type == "Run")">Run</option><option selected="@(ViewBag.Filter.Type == "Walk")">Walk</option><option selected="@(ViewBag.Filter.Type == "Cycle")">Cycle</option></select>
+    <input name="Location" value="@ViewBag.Filter.Location" placeholder="Location" />
+    <label>From <input name="From" type="date" value="@ViewBag.Filter.From?.ToString("yyyy-MM-dd")" /></label>
+    <label>To <input name="To" type="date" value="@ViewBag.Filter.To?.ToString("yyyy-MM-dd")" /></label>
+    <label><input name="UpcomingOnly" type="checkbox" value="true" checked="@ViewBag.Filter.UpcomingOnly" /> Upcoming only<input name="UpcomingOnly" type="hidden" value="false" /></label>
+    <button class="btn">Filter</button>
+</form>
+<div class="cards">
+@foreach (var item in Model) { <partial name="_EventCard" model="item" /> }
+</div>

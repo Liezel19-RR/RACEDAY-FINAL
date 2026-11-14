@@ -1,0 +1,5 @@
+@model ProfileVm
+<h1>My profile</h1>
+@if (!string.IsNullOrWhiteSpace(Model.ProfilePictureUrl)) { <img class="avatar" src="@Model.ProfilePictureUrl" alt="Profile picture" /> }
+<form method="post" asp-action="Profile"><div asp-validation-summary="All" class="error"></div><label asp-for="FullName"></label><input asp-for="FullName" /><label asp-for="Email"></label><input asp-for="Email" /><label asp-for="Phone"></label><input asp-for="Phone" /><button class="btn">Save profile</button></form>
+<form method="post" asp-action="UploadProfilePicture" enctype="multipart/form-data"><label for="file">Profile picture (JPG, PNG, WEBP or GIF; max 5 MB)</label><input id="file" name="file" type="file" accept=".jpg,.jpeg,.png,.webp,.gif" data-image-preview /><img class="preview" alt="Image preview" hidden /><button class="btn">Upload picture</button></form>
